@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block body %}
+<h3>Dashboard</h3>
+<hr>
+<p>Welcome , {{request.user.username}} </p>
+<a class="btn btn-danger" type="submit" href="/articles/addarticle">Add article</a>
+<hr>
+{% if articles %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Date</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for i in articles %}
+        <tr>
+            <th scope="row">{{i.id}}</th>
+            <td><a href="/articles/article/{{i.id}}">{{i.title}}</a></td>
+            <td>{{i.author.username}}</td>
+            <td>{{i.created_date}}</td>
+            <td><a href="/articles/update/{{i.id}}" class="btn btn-danger">Update</a></td>
+            <td><a href="/articles/delete/{{i.id}}" class="btn btn-danger">Delete</a></td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+  </table> 
+{% else %}
+<div class="alert alert-danger">No article found.</div>
+{% endif %}
+
+{% endblock body %}

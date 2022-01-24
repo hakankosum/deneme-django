@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+  <a class="navbar-brand" href="{% url 'index' %}">BLOG</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'about' %}">Hakkımda <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'article:articles' %}">Makaleler <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+
+
+    <ul class="navbar-nav ml-auto">
+      {% if request.user.is_authenticated %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'article:dashboard' %}">Dashboard <span class="sr-only">(current)</span></a>
+        </li>  
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'user:logout' %}">Logout <span class="sr-only">(current)</span></a>
+        </li>   
+      {% else %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'user:register' %}">Register <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'user:login' %}">Login <span class="sr-only">(current)</span></a>
+        </li>    
+      {% endif %}
+    </ul>
+  </div>
+</nav>
